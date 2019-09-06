@@ -10,12 +10,14 @@ package chess;
  * @author marmik
  */
 public abstract class Piece {
-    private boolean killed = false;
-    private boolean white = false;
+    boolean killed = false;
+    boolean white = false;
+    public String name;
 
-    public Piece(boolean white) {
+    public Piece(boolean white, String name) {
         this.white = white;
         this.killed = false;
+        this.name = name;
     }
 
     public boolean isKilled() {
@@ -32,6 +34,14 @@ public abstract class Piece {
 
     public void setWhite(boolean white) {
         this.white = white;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
   
     

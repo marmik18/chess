@@ -5,8 +5,6 @@
  */
 package chess;
 
-import java.util.stream.IntStream;
-
 /**
  *
  * @author marmi
@@ -16,15 +14,19 @@ public class Chess {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        Board board = new Board();
+    public static void main(String[] args) throws Exception {
         Player p1 = new Player(true);
         Player p2 = new Player(false);
-
+        Game game = new Game();
+        game.initialize(p1, p2);
+        game.getBoard().displayAll();
+        System.out.println("*************************************************");
+        game.playerMove(p1, 0, 1, 2, 0);
+        game.playerMove(p2, 7, 2, 5, 0);
+        game.playerMove(p1, 2, 0, 3, 2);
+        game.playerMove(p2, 7, 1, 5, 2);
+        game.getBoard().displayAll();
         
-//        board.displayAll();
-
     }
-    
 
 }

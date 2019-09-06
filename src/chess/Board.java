@@ -17,7 +17,7 @@ public class Board {
         initBoard();
     }
 
-    private void initBoard() {
+    void initBoard() {
 //      Init White Pieces
         boxses[0][0] = new Box(0, 0, new Rook(true));
         boxses[0][1] = new Box(0, 1, new Knight(true));
@@ -28,14 +28,14 @@ public class Board {
         boxses[0][6] = new Box(0, 6, new Knight(true));
         boxses[0][7] = new Box(0, 7, new Rook(true));
 //      Init White Pawns
-        boxses[1][0] = new Box(1, 0, new Rook(true));
-        boxses[1][1] = new Box(1, 1, new Knight(true));
-        boxses[1][2] = new Box(1, 2, new Bishop(true));
-        boxses[1][3] = new Box(1, 3, new Queen(true));
-        boxses[1][4] = new Box(1, 4, new King(true));
-        boxses[1][5] = new Box(1, 5, new Bishop(true));
-        boxses[1][6] = new Box(1, 6, new Knight(true));
-        boxses[1][7] = new Box(1, 7, new Rook(true));
+        boxses[1][0] = new Box(1, 0, new Pawn(true));
+        boxses[1][1] = new Box(1, 1, new Pawn(true));
+        boxses[1][2] = new Box(1, 2, new Pawn(true));
+        boxses[1][3] = new Box(1, 3, new Pawn(true));
+        boxses[1][4] = new Box(1, 4, new Pawn(true));
+        boxses[1][5] = new Box(1, 5, new Pawn(true));
+        boxses[1][6] = new Box(1, 6, new Pawn(true));
+        boxses[1][7] = new Box(1, 7, new Pawn(true));
         
 //      Init Blank Spaces
         for (int i = 2; i < 6; i++) {
@@ -54,14 +54,14 @@ public class Board {
         boxses[7][6] = new Box(7, 6, new Knight(false));
         boxses[7][7] = new Box(7, 7, new Rook(false));
 //      Init White Pawns
-        boxses[6][0] = new Box(6, 0, new Rook(false));
-        boxses[6][1] = new Box(6, 1, new Knight(false));
-        boxses[6][2] = new Box(6, 2, new Bishop(false));
-        boxses[6][3] = new Box(6, 3, new Queen(false));
-        boxses[6][4] = new Box(6, 4, new King(false));
-        boxses[6][5] = new Box(6, 5, new Bishop(false));
-        boxses[6][6] = new Box(6, 6, new Knight(false));
-        boxses[6][7] = new Box(6, 7, new Rook(false));
+        boxses[6][0] = new Box(6, 0, new Pawn(false));
+        boxses[6][1] = new Box(6, 1, new Pawn(false));
+        boxses[6][2] = new Box(6, 2, new Pawn(false));
+        boxses[6][3] = new Box(6, 3, new Pawn(false));
+        boxses[6][4] = new Box(6, 4, new Pawn(false));
+        boxses[6][5] = new Box(6, 5, new Pawn(false));
+        boxses[6][6] = new Box(6, 6, new Pawn(false));
+        boxses[6][7] = new Box(6, 7, new Pawn(false));
 
 
     }
@@ -74,10 +74,14 @@ public class Board {
     }
 
     public void displayAll() {
-        for (int i = 0; i < 8; i++) {
+        for (int i = 7; i >= 0; i--) {
             for (int j = 0; j < 8; j++) {
-                System.out.print(i + " " + j + " : " );
-                System.out.println(boxses[i][j].getPiece());
+                System.out.print(i + "," + j + ": " );
+                if(boxses[i][j].getPiece() != null ){
+                    System.out.print(boxses[i][j].getPiece().getName()+"\t");
+                }else{
+                    System.out.print("null\t");
+                }
             }
             System.out.println("");
         }

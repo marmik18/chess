@@ -11,20 +11,19 @@ package chess;
  */
 public class Player {
 
-    boolean white = false;
+    boolean whiteSide = false;
 
-    public Player(boolean white) {
-//        set the player to white or black
-        this.white = white;
+    public Player(boolean whiteSide) {
+        this.whiteSide = whiteSide;
     }    
     
     
-    public boolean isWhite() {
-        return white;
+    public boolean isWhiteSide() {
+        return whiteSide;
     }
 
-    public void setWhite(boolean white) {
-        this.white = white;
+    public void setwhiteSide(boolean whiteSide) {
+        this.whiteSide = whiteSide;
     }
 
 }

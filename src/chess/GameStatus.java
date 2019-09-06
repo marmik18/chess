@@ -9,15 +9,9 @@ package chess;
  *
  * @author marmi
  */
-public class Pawn extends Piece{
-
-    public Pawn(boolean white) {
-        super(white, "Pawn");
-    }
-
-    @Override
-    public boolean canMove(Board board, Box start, Box end) {
-        return  true;
-    }
-    
-}
+public enum GameStatus { 
+    ACTIVE, 
+    BLACK_WIN, 
+    WHITE_WIN, 
+    FORFEIT
+} 
