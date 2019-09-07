@@ -17,7 +17,11 @@ public abstract class Piece {
     public Piece(boolean white, String name) {
         this.white = white;
         this.killed = false;
-        this.name = name;
+        if(this.isWhite()){
+            this.name = name+"(w)";
+        }else{
+            this.name = name+"(b)";
+        }
     }
 
     public boolean isKilled() {

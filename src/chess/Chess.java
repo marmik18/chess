@@ -22,11 +22,16 @@ public class Chess {
         game.getBoard().displayAll();
         System.out.println("*************************************************");
         game.playerMove(p1, 0, 1, 2, 0);
-        game.playerMove(p2, 7, 2, 5, 0);
-        game.playerMove(p1, 2, 0, 3, 2);
-        game.playerMove(p2, 7, 1, 5, 2);
         game.getBoard().displayAll();
-        
+        System.out.println("*************************************************");
+        game.playerMove(p2, 7, 3, 0, 2);
+        game.getBoard().displayAll();
+//        System.out.println("*************************************************");
+//        game.playerMove(p1, 2, 0, 3, 2);
+//        game.getBoard().displayAll();
+//        System.out.println("*************************************************");
+//        game.playerMove(p2, 7, 1, 5, 2);
+//        game.getBoard().displayAll();
     }
 
 }

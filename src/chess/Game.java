@@ -71,7 +71,7 @@ public class Game {
         }
 
         if (sourcePiece.isWhite() != player.isWhiteSide()) {
-            System.out.println("Entered IF 3");
+            System.out.println("Invalid Piece Picked by the Player");
             return false;
         }
 
