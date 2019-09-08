@@ -18,7 +18,6 @@ public class Knight extends Piece {
     @Override
     public boolean canMove(Board board, Box start, Box end) {
         if (end.getPiece() != null && end.getPiece().isWhite() == this.isWhite()) {
-            System.out.println("Entered Knight IF");
             return false;
         }
         int x = Math.abs(start.getX() - end.getX());

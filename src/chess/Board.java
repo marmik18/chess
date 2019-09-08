@@ -80,7 +80,7 @@ public class Board {
                 if(boxses[i][j].getPiece() != null ){
                     System.out.print(boxses[i][j].getPiece().getName()+"\t");
                 }else{
-                    System.out.print("null\t");
+                    System.out.print("*\t\t");
                 }
             }
             System.out.println("");

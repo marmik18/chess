@@ -34,11 +34,14 @@ public class Game {
         } else {
             this.currentTurn = p2;
         }
-
+        
+        setStatus(GameStatus.ACTIVE);
         movesPlayed.clear();
+        
     }
 
     public boolean isEnd() {
+        System.out.println(this.getStatus() != GameStatus.ACTIVE);
         return this.getStatus() != GameStatus.ACTIVE;
     }
 
@@ -61,42 +64,47 @@ public class Game {
 
         Piece sourcePiece = move.getStart().getPiece();
         if (sourcePiece == null) {
-            System.out.println("Source Item is null");
+            System.err.println("Source Item is null");
             return false;
         }
 
         if (player != currentTurn) {
-            System.out.println("Wrong players turn");
+            System.err.println("Wrong players turn");
             return false;
         }
 
         if (sourcePiece.isWhite() != player.isWhiteSide()) {
-            System.out.println("Invalid Piece Picked by the Player");
+            System.err.println("Invalid Piece Color Picked by the Player");
             return false;
         }
 
         if (!sourcePiece.canMove(board, move.getStart(),
                 move.getEnd())) {
-            System.out.println("Invalid move for the piece");
+            System.err.println("Invalid move for the piece");
             return false;
         }
 
-        Piece destPiece = move.getStart().getPiece();
+        Piece destPiece = move.getEnd().getPiece();
         if (destPiece != null) {
             destPiece.setKilled(true);
             move.setPieceKilled(destPiece);
+            System.err.println(move.getStart().getPiece().getName()+" killed "+ destPiece.getName());
         }
 
         movesPlayed.add(move);
-
+        if (move.getStart().getPiece() instanceof Pawn){
+            ((Pawn)move.getStart().getPiece()).setFirstMove();
+        }
         move.getEnd().setPiece(move.getStart().getPiece());
         move.getStart().setPiece(null);
 
         if (destPiece != null && destPiece instanceof King) {
             if (player.isWhiteSide()) {
                 this.setStatus(GameStatus.WHITE_WIN);
+                System.err.println("White Team Wins");
             } else {
                 this.setStatus(GameStatus.BLACK_WIN);
+                System.err.println("Black Team Wins");
             }
         }
 
@@ -107,6 +115,10 @@ public class Game {
         }
 
         return true;
+    }
+
+    public Player getCurrentTurn() {
+        return currentTurn;
     }
 
     public Board getBoard() {
