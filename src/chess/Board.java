@@ -13,8 +13,16 @@ public class Board {
 
     Box[][] boxses = new Box[8][8];
 
-    public Board() {
-        initBoard();
+    private Board() {
+        
+    }
+
+    public static Board getInstance() {
+        return boardHolder.INSTANCE;
+    }
+
+    private static class boardHolder {
+        private static final Board INSTANCE = new Board();
     }
 
     void initBoard() {
@@ -36,7 +44,7 @@ public class Board {
         boxses[1][5] = new Box(1, 5, new Pawn(true));
         boxses[1][6] = new Box(1, 6, new Pawn(true));
         boxses[1][7] = new Box(1, 7, new Pawn(true));
-        
+
 //      Init Blank Spaces
         for (int i = 2; i < 6; i++) {
             for (int j = 0; j < 8; j++) {
@@ -63,7 +71,6 @@ public class Board {
         boxses[6][6] = new Box(6, 6, new Pawn(false));
         boxses[6][7] = new Box(6, 7, new Pawn(false));
 
-
     }
 
     public Box getBox(int x, int y) throws Exception {
@@ -76,14 +83,15 @@ public class Board {
     public void displayAll() {
         for (int i = 7; i >= 0; i--) {
             for (int j = 0; j < 8; j++) {
-                System.out.print(i + "," + j + ": " );
-                if(boxses[i][j].getPiece() != null ){
-                    System.out.print(boxses[i][j].getPiece().getName()+"\t");
-                }else{
+                System.out.print(i + "," + j + ": ");
+                if (boxses[i][j].getPiece() != null) {
+                    System.out.print(boxses[i][j].getPiece().getName() + "\t");
+                } else {
                     System.out.print("*\t\t");
                 }
             }
             System.out.println("");
         }
     }
+
 }

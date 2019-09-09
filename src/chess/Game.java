@@ -28,7 +28,9 @@ public class Game {
         players[0] = p1;
         players[1] = p2;
 
-        board = new Board();
+        board = Board.getInstance();
+        board.initBoard();
+        
         if (p1.isWhiteSide()) {
             this.currentTurn = p1;
         } else {
