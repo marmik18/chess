@@ -1,4 +1,4 @@
-# chess
+# Chess Assignment for Chipmonk
 
 This project was generated with [Netbeans IDE] version 8.2.
 
@@ -20,3 +20,11 @@ for eg. you want to move a knight from position 0,1 to 2,0 you type `0 1 2 0`
 
 
 ## Steps to run the test cases
+
+Open Neatbeans 8.2 (https://netbeans.org/downloads/8.2/)
+
+Open Project Using the Netbeans IDE
+
+Navigate to Test Packages and open the chess Package
+
+Open GameTest.java `right click > Run File` or Press `Shift + F6`
