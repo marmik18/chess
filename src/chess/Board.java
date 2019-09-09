@@ -75,7 +75,7 @@ public class Board {
 
     public Box getBox(int x, int y) throws Exception {
         if (x < 0 || x > 7 || y < 0 || y > 7) {
-            throw new Exception("Index out of bound");
+            throw new Exception("Index out of board, please enter the numbers from the above shown matrix");
         }
         return boxses[x][y];
     }

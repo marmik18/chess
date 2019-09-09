@@ -7,6 +7,8 @@ package chess;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -20,30 +22,30 @@ public class Game {
     private GameStatus status;
     private final List<Move> movesPlayed;
 
-    public Game() {
+    public Game(Player p1, Player p2) {
         movesPlayed = new ArrayList<>();
+        initialize(p1, p2);
     }
 
-    void initialize(Player p1, Player p2) {
+    private void initialize(Player p1, Player p2) {
         players[0] = p1;
         players[1] = p2;
 
         board = Board.getInstance();
         board.initBoard();
-        
+
         if (p1.isWhiteSide()) {
             this.currentTurn = p1;
         } else {
             this.currentTurn = p2;
         }
-        
+
         setStatus(GameStatus.ACTIVE);
         movesPlayed.clear();
-        
+
     }
 
     public boolean isEnd() {
-        System.out.println(this.getStatus() != GameStatus.ACTIVE);
         return this.getStatus() != GameStatus.ACTIVE;
     }
 
@@ -51,15 +53,21 @@ public class Game {
         return this.status;
     }
 
-    public void setStatus(GameStatus status) {
+    private void setStatus(GameStatus status) {
         this.status = status;
     }
 
-    public boolean playerMove(Player player, int startX, int startY, int endX, int endY) throws Exception {
-        Box startBox = board.getBox(startX, startY);
-        Box endBox = board.getBox(endX, endY);
-        Move move = new Move(player, startBox, endBox);
-        return this.makeMove(move, player);
+    public boolean playerMove(Player player, int startX, int startY, int endX, int endY) {
+        try {
+            Box startBox = board.getBox(startX, startY);
+            Box endBox = board.getBox(endX, endY);
+            Move move = new Move(player, startBox, endBox);
+            return this.makeMove(move, player);
+        } catch (Exception ex) {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.err.println("Invalid error occured");
+        return false;
     }
 
     private boolean makeMove(Move move, Player player) {
@@ -90,12 +98,12 @@ public class Game {
         if (destPiece != null) {
             destPiece.setKilled(true);
             move.setPieceKilled(destPiece);
-            System.err.println(move.getStart().getPiece().getName()+" killed "+ destPiece.getName());
+            System.err.println(move.getStart().getPiece().getName() + " killed " + destPiece.getName());
         }
 
         movesPlayed.add(move);
-        if (move.getStart().getPiece() instanceof Pawn){
-            ((Pawn)move.getStart().getPiece()).setFirstMove();
+        if (move.getStart().getPiece() instanceof Pawn) {
+            ((Pawn) move.getStart().getPiece()).setFirstMove();
         }
         move.getEnd().setPiece(move.getStart().getPiece());
         move.getStart().setPiece(null);
